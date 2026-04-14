@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saplyte - SVI Apple i Samsung modeli 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+        }
+
+            body.light-mode {
+                background: linear-gradient(145deg, #f5f7fe 0%, #e8edf9 100%);
+                color: #1a2639;
+            }
+
+                body.light-mode .container {
+                    background: rgba(255, 255, 255, 0.7);
+                    backdrop-filter: blur(20px);
+                }
+
+            body.dark-mode {
+                background: linear-gradient(145deg, #1a1f2e 0%, #131825 100%);
+                color: #e3e9f2;
+            }
+
+                body.dark-mode .container {
+                    background: rgba(18, 22, 35, 0.85);
+                    backdrop-filter: blur(20px);
+                }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 25px 35px;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0 25px 0;
+            border-bottom: 1px solid rgba(100, 150, 255, 0.2);
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(145deg, #5f8cff, #8aa9ff);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 18px rgba(95, 140, 255, 0.3);
+        }
+
+            .logo span {
+                font-size: 28px;
+                font-weight: 700;
+                color: white;
+            }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            color: #2f3e5a;
+        }
+
+        body.dark-mode h1 {
+            color: #cbd5e6;
+        }
+
+        .nav-info {
+            padding: 8px 22px;
+            background: rgba(95, 140, 255, 0.1);
+            border-radius: 40px;
+            font-size: 14px;
+            border: 1px solid rgba(95, 140, 255, 0.25);
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+            .hero h2 {
+                font-size: 40px;
+                font-weight: 400;
+                margin-bottom: 10px;
+                background: linear-gradient(145deg, #3a5eba, #5f8cff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .hero p {
+                font-size: 18px;
+                font-weight: 300;
+                color: #546a8a;
+                max-width: 700px;
+                margin: 0 auto;
+            }
+
+        body.dark-mode .hero p {
+            color: #9bafcf;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 950px;
+            margin: 0 auto 50px auto;
+        }
+
+        .brand-card {
+            aspect-ratio: 1 / 1;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 44px;
+            padding: 50px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s;
+            border: 1px solid rgba(95, 140, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        body.dark-mode .brand-card {
+            background: rgba(30, 38, 58, 0.5);
+        }
+
+        .brand-card:hover {
+            transform: translateY(-8px);
+            border-color: #5f8cff;
+            box-shadow: 0 25px 40px rgba(95, 140, 255, 0.2);
+        }
+
+        .brand-emoji {
+            font-size: 80px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.1));
+        }
+
+        .brand-card h3 {
+            font-size: 38px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: #2b3d5e;
+        }
+
+        body.dark-mode .brand-card h3 {
+            color: #d3def5;
+        }
+
+        .brand-card p {
+            font-size: 16px;
+            font-weight: 300;
+            color: #556b8c;
+            max-width: 250px;
+            line-height: 1.5;
+        }
+
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0 30px;
+        }
+
+        .category-btn {
+            padding: 8px 20px;
+            border: 1px solid rgba(95, 140, 255, 0.3);
+            background: transparent;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            color: inherit;
+        }
+
+            .category-btn:hover, .category-btn.active {
+                background: #5f8cff;
+                color: white;
+                border-color: #5f8cff;
+            }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+            margin: 25px 0 40px;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 30px;
+            padding: 25px 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid rgba(95, 140, 255, 0.15);
+            text-align: center;
+        }
+
+        body.dark-mode .product-card {
+            background: rgba(30, 38, 58, 0.4);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: #5f8cff;
+        }
+
+        .product-emoji {
+            font-size: 50px;
+            margin-bottom: 12px;
+        }
+
+        .product-card h4 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .product-badge {
+            font-size: 11px;
+            padding: 4px 10px;
+            background: rgba(95, 140, 255, 0.2);
+            border-radius: 30px;
+            display: inline-block;
+        }
+
+        .specs-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .specs-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            padding: 10px 28px;
+            border: 1px solid rgba(95, 140, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: all 0.2s;
+            color: inherit;
+        }
+
+            .back-btn:hover {
+                background: #5f8cff;
+                color: white;
+                border-color: #5f8cff;
+            }
+
+        .specs-title {
+            font-size: 32px;
+            font-weight: 400;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .specs-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 34px;
+            padding: 28px;
+            border: 1px solid rgba(95, 140, 255, 0.15);
+        }
+
+        body.dark-mode .specs-card {
+            background: rgba(30, 38, 58, 0.4);
+        }
+
+        .specs-card h3 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 18px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(95, 140, 255, 0.2);
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(95, 140, 255, 0.1);
+        }
+
+        .spec-label {
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        .spec-value {
+            font-weight: 500;
+            color: #3a5eba;
+            text-align: right;
+        }
+
+        body.dark-mode .spec-value {
+            color: #9bb6ff;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-top: 15px;
+        }
+
+        .pros-box, .cons-box {
+            padding: 18px;
+            border-radius: 24px;
+        }
+
+        .pros-box {
+            background: rgba(70, 190, 120, 0.1);
+        }
+
+        .cons-box {
+            background: rgba(255, 100, 100, 0.08);
+        }
+
+            .pros-box h4, .cons-box h4 {
+                font-weight: 400;
+                margin-bottom: 12px;
+            }
+
+            .pros-box ul, .cons-box ul {
+                list-style: none;
+            }
+
+            .pros-box li, .cons-box li {
+                padding: 6px 0;
+                font-size: 14px;
+            }
+
+        .best-for {
+            margin-top: 20px;
+            padding: 18px;
+            background: rgba(95, 140, 255, 0.1);
+            border-radius: 28px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 35px 0 10px 0;
+            font-size: 13px;
+            opacity: 0.7;
+            border-top: 1px solid rgba(95, 140, 255, 0.15);
+            margin-top: 50px;
+        }
+
+        .settings-panel {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            border-radius: 50px;
+            padding: 8px;
+            border: 1px solid rgba(95, 140, 255, 0.2);
+            z-index: 1000;
+            display: flex;
+            gap: 5px;
+        }
+
+        body.dark-mode .settings-panel {
+            background: rgba(25, 30, 45, 0.9);
+        }
+
+        .mode-btn {
+            padding: 8px 22px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            background: transparent;
+            color: inherit;
+            font-size: 13px;
+        }
+
+            .mode-btn.active {
+                background: #5f8cff;
+                color: white;
+            }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 700px) {
+            .brands-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <div class="container">
+        <div class="header">
+            <div class="logo-area" id="homeBtn">
+                <div class="logo">
+                    <span>S</span>
+                </div>
+                <h1>Saplyte</h1>
+            </div>
+            <div class="nav-info" id="currentView">Početna</div>
+        </div>
+
+        <div class="hero">
+            <h2>Svi Apple i Samsung modeli 2026</h2>
+            <p>Potpuni pregled svih uređaja - iPhone, Mac, iPad, AirPods, Watch, Vision, TV / Galaxy, Tab, Watch, Buds, Book</p>
+        </div>
+
+        <!-- POČETNA -->
+        <div id="homePage">
+            <div class="brands-grid">
+                <div class="brand-card" id="appleBrandBtn">
+                    <div class="brand-emoji">🍎</div>
+                    <h3>Apple</h3>
+                    <p>iPhone 16e, 17, Air, 17 Pro/Max • MacBook Air/Pro • iPad Pro/Air/mini • AirPods Pro/Max/4 • Watch Series/Ultra/SE • Vision Pro • AirTag 2 • Apple TV</p>
+                </div>
+                <div class="brand-card" id="samsungBrandBtn">
+                    <div class="brand-emoji">📱</div>
+                    <h3>Samsung</h3>
+                    <p>Galaxy S26/S26+/S26 Ultra • Z Fold6/Flip6 • Tab S10 Ultra/+/FE • Watch7/Ultra • Buds3 Pro • Book5 Pro • Monitori • TV</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- STRANICA S PROIZVODIMA -->
+        <div id="productsPage" class="hidden">
+            <h2 id="brandTitle" style="text-align: center; font-weight: 400; font-size: 32px; margin-bottom: 15px;"></h2>
+            <div class="category-filter" id="categoryFilter"></div>
+            <div id="productsList" class="products-grid"></div>
+        </div>
+
+        <!-- STRANICA S SPECIFIKACIJAMA -->
+        <div id="specsPage" class="hidden">
+            <div class="specs-header">
+                <button class="back-btn" id="backToProductsBtn">← Nazad na proizvode</button>
+                <span class="specs-title" id="productName"></span>
+            </div>
+            <div id="specsContent" class="specs-container"></div>
+        </div>
+
+        <div class="footer">
+            <p>Saplyte — potpune specifikacije temeljene na službenim podacima (2026)</p>
+            <p style="font-size: 11px; margin-top: 5px;">Svi nazivi proizvoda zaštićeni su žigovi njihovih vlasnika. Podaci su javno dostupne činjenice.</p>
+        </div>
+    </div>
+
+    <div class="settings-panel">
+        <button class="mode-btn active" id="lightModeBtn">☀️ Svijetlo</button>
+        <button class="mode-btn" id="darkModeBtn">🌙 Tamno</button>
+    </div>
+
+    <script>
+        // =============================================
+        // SVI APPLE MODELI 2026
+        // =============================================
+        const appleProducts = [
+            // iPHONE SERIJA
+            {
+                id: 'iphone16e',
+                name: 'iPhone 16e',
+                category: 'iPhone',
+                emoji: '📱',
+                specs: {
+                    zaslon: '6.1" OLED, 120Hz',
+                    procesor: 'A18',
+                    memorija: '8GB RAM + 128GB/256GB',
+                    kamera: '48MP glavna',
+                    prednja: '12MP',
+                    baterija: '~4005 mAh',
+                    punjenje: '20W žično,7.5W MagSafe',
+                    težina: '167g',
+                    otpornost: 'IP68',
+                    os: 'iOS 18'
+                },
+                pros: ['Pristupačna cijena', 'Dobar zaslon', 'A18 čip'],
+                cons: ['Samo jedna kamera', 'Sporije punjenje'],
+                bestFor: 'Student, prvi iPhone, budžetski izbor'
+            },
+            {
+                id: 'iphone17',
+                name: 'iPhone 17',
+                category: 'iPhone',
+                emoji: '📱',
+                specs: {
+                    zaslon: '6.3" OLED, 120Hz',
+                    procesor: 'A19',
+                    memorija: '8GB RAM + 128GB/256GB/512GB',
+                    kamera: '48MP glavna + 48MP ultraširoka',
+                    prednja: '12MP',
+                    baterija: '~3692 mAh',
+                    punjenje: '25W žično, MagSafe',
+                    težina: '177g'
+                },
+                pros: ['Najbolji omjer cijene i performansi', 'Dvije kamere', 'A19'],
+                cons: ['Nema telephoto'],
+                bestFor: 'Većina korisnika'
+            },
+            {
+                id: 'iphoneair',
+                name: 'iPhone Air',
+                category: 'iPhone',
+                emoji: '📱',
+                specs: {
+                    zaslon: '6.5" OLED, 120Hz',
+                    procesor: 'A19 Pro',
+                    memorija: '8GB RAM + 128GB/256GB/512GB',
+                    kamera: '48MP Fusion (24/28/35/70mm)',
+                    prednja: '12MP',
+                    baterija: '~3150 mAh',
+                    težina: '165g',
+                    debljina: 'Izuzetno tanak'
+                },
+                pros: ['Vrlo tanak i lagan', 'Unikatan dizajn', 'Fusion kamera'],
+                cons: ['Tanji = manja baterija', 'Skuplji od 17'],
+                bestFor: 'One koji žele dizajn i premium bez Pro cijene'
+            },
+            {
+                id: 'iphone17pro',
+                name: 'iPhone 17 Pro',
+                category: 'iPhone',
+                emoji: '📱',
+                specs: {
+                    zaslon: '6.3" OLED, 120Hz ProMotion',
+                    procesor: 'A19 Pro',
+                    memorija: '8GB RAM + 128GB/256GB/512GB/1TB',
+                    kamera: '48MP + 48MP + 12MP tele (5x)',
+                    prednja: '12MP',
+                    baterija: '~4250 mAh',
+                    punjenje: '40W žično, MagSafe',
+                    težina: '206g',
+                    materijal: 'Titanij'
+                },
+                pros: ['Profesionalna kamera', '5x optički zoom', 'Brže punjenje'],
+                cons: ['Skup', 'Teži'],
+                bestFor: 'Profesionalne fotografe, entuzijaste'
+            },
+            {
+                id: 'iphone17promax',
+                name: 'iPhone 17 Pro Max',
+                category: 'iPhone',
+                emoji: '📱',
+                specs: {
+                    zaslon: '6.9" OLED, 120Hz ProMotion',
+                    procesor: 'A19 Pro',
+                    memorija: '8GB RAM + 256GB/512GB/1TB',
+                    kamera: '48MP + 48MP + 12MP tele (5x)',
+                    prednja: '12MP',
+                    baterija: '~5.080 mAh',
+                    punjenje: '40W žično, MagSafe',
+                    težina: '233g',
+                    materijal: 'Titanij'
+                },
+                pros: ['Najveći zaslon', 'Najduža baterija', 'Najbolje performanse'],
+                cons: ['Vrlo skup', 'Težak'],
+                bestFor: 'Ekstremiste, power user-e'
+            },
+
+            // MACBOOK SERIJA
+            {
+                id: 'macbookair13m5',
+                name: 'MacBook Air 13" M5',
+                category: 'Mac',
+                emoji: '💻',
+                specs: {
+                    zaslon: '13.6" Liquid Retina',
+                    procesor: 'M5 (8-core)',
+                    memorija: '16GB - 32GB',
+                    pohrana: '256GB - 2TB SSD',
+                    kamera: '1080p FaceTime HD',
+                    baterija: 'Do 18h',
+                    težina: '1.24kg'
+                },
+                pros: ['M5 čip', 'Tih rad', 'Prenosiv'],
+                cons: ['Nema ventilatora', 'Samo dva porta'],
+                bestFor: 'Studente, uredski rad'
+            },
+            {
+                id: 'macbookair15m5',
+                name: 'MacBook Air 15" M5',
+                category: 'Mac',
+                emoji: '💻',
+                specs: {
+                    zaslon: '15.3" Liquid Retina',
+                    procesor: 'M5',
+                    memorija: '16GB - 32GB',
+                    pohrana: '256GB - 2TB',
+                    baterija: 'Do 18h',
+                    težina: '1.51kg'
+                },
+                pros: ['Veći zaslon', 'M5', 'Tanak'],
+                cons: ['Sporiji od Pro'],
+                bestFor: 'One koji žele veliki Air'
+            },
+            {
+                id: 'macbookprom5',
+                name: 'MacBook Pro 14" M5',
+                category: 'Mac',
+                emoji: '💻',
+                specs: {
+                    zaslon: '14.2" Liquid Retina XDR, ProMotion',
+                    procesor: 'M5 Pro / M5 Max',
+                    memorija: '18GB - 128GB',
+                    pohrana: '512GB - 8TB',
+                    kamera: '1080p',
+                    baterija: 'Do 22h',
+                    priključci: 'HDMI, SDXC, Thunderbolt 4, MagSafe',
+                    težina: '1.6kg'
+                },
+                pros: ['Snažan', 'XDR zaslon', 'Puno priključaka'],
+                cons: ['Skup', 'Težak'],
+                bestFor: 'Profesionalce, developere'
+            },
+            {
+                id: 'macbookprom5max',
+                name: 'MacBook Pro 16" M5 Max',
+                category: 'Mac',
+                emoji: '💻',
+                specs: {
+                    zaslon: '16.2" Liquid Retina XDR, ProMotion',
+                    procesor: 'M5 Max',
+                    memorija: '36GB - 256GB',
+                    pohrana: '1TB - 16TB SSD',
+                    baterija: 'Do 24h',
+                    težina: '2.2kg'
+                },
+                pros: ['Maksimalne performanse', 'Ogroman zaslon', 'Profesionalni priključci'],
+                cons: ['Vrlo skup', 'Težak'],
+                bestFor: 'Profesionalce kojima treba maksimalna snaga'
+            },
+            {
+                id: 'macbookentry',
+                name: 'MacBook (ulazni)',
+                category: 'Mac',
+                emoji: '💻',
+                specs: {
+                    zaslon: '13" LCD',
+                    procesor: 'A18 Pro',
+                    memorija: '8GB RAM',
+                    pohrana: '256GB SSD',
+                    težina: '~1.3kg'
+                },
+                pros: ['Pristupačna cijena', 'A18 Pro snaga'],
+                cons: ['LCD zaslon', 'Osnovne specifikacije'],
+                bestFor: 'Korisnike s budžetom'
+            },
+
+            // IPAD SERIJA
+            {
+                id: 'ipad12',
+                name: 'iPad 12',
+                category: 'iPad',
+                emoji: '📱',
+                specs: {
+                    zaslon: '10.9" Liquid Retina',
+                    procesor: 'A19',
+                    memorija: '6GB RAM',
+                    pohrana: '64GB/256GB',
+                    kamera: '12MP',
+                    baterija: 'Do 10h',
+                    težina: '~480g'
+                },
+                pros: ['Pristupačan', 'A19 čip'],
+                cons: ['Nema 120Hz', '64GB osnova'],
+                bestFor: 'Osnovne potrebe, škola'
+            },
+            {
+                id: 'ipadairm4',
+                name: 'iPad Air M4',
+                category: 'iPad',
+                emoji: '📱',
+                specs: {
+                    zaslon: '11"/13" Liquid Retina',
+                    procesor: 'M4',
+                    memorija: '8GB RAM',
+                    pohrana: '128GB/256GB/512GB',
+                    kamera: '12MP',
+                    težina: '~460g/~620g'
+                },
+                pros: ['M4 čip', 'Dobar omjer cijene', 'Dvije veličine'],
+                cons: ['Nema ProMotion'],
+                bestFor: 'Većinu korisnika, studente'
+            },
+            {
+                id: 'ipadprom4',
+                name: 'iPad Pro M4',
+                category: 'iPad',
+                emoji: '📱',
+                specs: {
+                    zaslon: '11"/13" OLED, 120Hz ProMotion',
+                    procesor: 'M4',
+                    memorija: '8GB/16GB',
+                    pohrana: '256GB - 2TB',
+                    kamera: '12MP + 10MP, LiDAR',
+                    prednja: '12MP',
+                    težina: '~450g/~580g'
+                },
+                pros: ['OLED zaslon', 'M4', 'Face ID', 'ProMotion'],
+                cons: ['Skup'],
+                bestFor: 'Kreativce, profesionalce'
+            },
+            {
+                id: 'ipadmini7',
+                name: 'iPad mini 7',
+                category: 'iPad',
+                emoji: '📱',
+                specs: {
+                    zaslon: '8.3" Liquid Retina',
+                    procesor: 'A18',
+                    memorija: '6GB RAM',
+                    pohrana: '128GB/256GB',
+                    kamera: '12MP',
+                    težina: '293g',
+                    podrška: 'Apple Pencil 2'
+                },
+                pros: ['Kompaktan', 'Lagan', 'Idealan za čitanje'],
+                cons: ['Manji zaslon'],
+                bestFor: 'Čitanje, putovanja'
+            },
+
+            // AIRPODS SERIJA
+            {
+                id: 'airpods4',
+                name: 'AirPods 4',
+                category: 'AirPods',
+                emoji: '🎧',
+                specs: {
+                    tip: 'Otvoreni',
+                    čip: 'H3',
+                    poništavanje_buke: 'Nema',
+                    zvuk: 'Prostorni zvuk',
+                    baterija: 'Do 6h, 30h s kutijom',
+                    punjenje: 'USB-C, bežično',
+                    otpornost: 'IP54'
+                },
+                pros: ['Dobar zvuk', 'Pristupačni'],
+                cons: ['Nema ANC'],
+                bestFor: 'One koji ne vole silikonske jastučiće'
+            },
+            {
+                id: 'airpodspro3',
+                name: 'AirPods Pro 3',
+                category: 'AirPods',
+                emoji: '🎧',
+                specs: {
+                    tip: 'In-ear',
+                    čip: 'H3',
+                    poništavanje_buke: 'Aktivno (poboljšano)',
+                    prozirni_način: 'Prilagodljivi',
+                    zvuk: 'Prostorni zvuk, Hi-Res',
+                    baterija: 'Do 7h, 35h s kutijom',
+                    punjenje: 'USB-C, MagSafe, Qi2',
+                    otpornost: 'IP57'
+                },
+                pros: ['Najbolji ANC', 'Odličan zvuk', 'Dulja baterija'],
+                cons: ['Skupi'],
+                bestFor: 'Sve koji traže najbolje'
+            },
+            {
+                id: 'airpodsmax2',
+                name: 'AirPods Max 2',
+                category: 'AirPods',
+                emoji: '🎧',
+                specs: {
+                    tip: 'Over-ear',
+                    čip: 'H3',
+                    poništavanje_buke: 'Aktivno',
+                    zvuk: 'Hi-Res, prostorni zvuk',
+                    baterija: 'Do 24h',
+                    punjenje: 'USB-C',
+                    težina: '~380g'
+                },
+                pros: ['Vrhunski zvuk', 'Dizajn', 'Dobar ANC'],
+                cons: ['Vrlo skupi', 'Teški'],
+                bestFor: 'Audiofile'
+            },
+
+            // APPLE WATCH SERIJA
+            {
+                id: 'watchse3',
+                name: 'Apple Watch SE 3',
+                category: 'Apple Watch',
+                emoji: '⌚',
+                specs: {
+                    zaslon: '44mm/40mm',
+                    procesor: 'S9',
+                    baterija: 'Do 20h',
+                    senzori: 'Osnovni'
+                },
+                pros: ['Povoljan', 'Sve osnovne funkcije'],
+                cons: ['Nema Always-On', 'Nema EKG'],
+                bestFor: 'Prvi pametni sat'
+            },
+            {
+                id: 'watchseries12',
+                name: 'Apple Watch Series 12',
+                category: 'Apple Watch',
+                emoji: '⌚',
+                specs: {
+                    zaslon: '45mm/41mm, Always-On',
+                    procesor: 'S11',
+                    materijal: 'Aluminij / Titanij',
+                    baterija: 'Do 24h',
+                    senzori: 'EKG, SpO2, temperatura, krvni tlak'
+                },
+                pros: ['Novi senzor tlaka', 'S11 čip'],
+                cons: ['Ista baterija'],
+                bestFor: 'Većinu korisnika'
+            },
+            {
+                id: 'watchultra4',
+                name: 'Apple Watch Ultra 4',
+                category: 'Apple Watch',
+                emoji: '⌚',
+                specs: {
+                    zaslon: '49mm, 3000 nita',
+                    procesor: 'S11',
+                    baterija: 'Do 48h (96h low-power)',
+                    otpornost: '100m',
+                    senzori: 'EKG, SpO2, temperatura, dubinomjer'
+                },
+                pros: ['Duga baterija', 'Izdržljiv', 'Precizan GPS'],
+                cons: ['Velik', 'Skup'],
+                bestFor: 'Sportaše, avanturiste'
+            },
+
+            // OSTALI APPLE PROIZVODI
+            {
+                id: 'airtag2',
+                name: 'AirTag 2',
+                category: 'Ostalo',
+                emoji: '🔘',
+                specs: {
+                    čip: 'U2 (Ultra Wideband)',
+                    domet: 'Poboljšan',
+                    baterija: 'CR2036 (zamjenjiva, 1.5+ godina)',
+                    otpornost: 'IP67',
+                    zvučnik: 'Glasniji'
+                },
+                pros: ['Preciznije traženje', 'Dulja baterija', 'Glasniji'],
+                cons: ['Isti dizajn', 'Samo za Apple'],
+                bestFor: 'One koji gube stvari'
+            },
+            {
+                id: 'applevisionpro2',
+                name: 'Apple Vision Pro 2',
+                category: 'Ostalo',
+                emoji: '🥽',
+                specs: {
+                    zaslon: 'Mikro-OLED (poboljšan)',
+                    procesor: 'M4 + R2',
+                    memorija: '16GB RAM',
+                    pohrana: '512GB / 1TB / 2TB',
+                    baterija: 'Do 3h',
+                    težina: '~550g'
+                },
+                pros: ['Poboljšan zaslon', 'M4 čip', 'Lakši'],
+                cons: ['Vrlo skup', 'Kratka baterija'],
+                bestFor: 'Entuzijaste, developere'
+            },
+            {
+                id: 'appletv4k',
+                name: 'Apple TV 4K (2026)',
+                category: 'Ostalo',
+                emoji: '📺',
+                specs: {
+                    procesor: 'A18',
+                    memorija: '4GB RAM',
+                    pohrana: '64GB/128GB',
+                    povezivanje: 'Wi-Fi 6E, Bluetooth 5.3',
+                    priključci: 'HDMI 2.1, Ethernet',
+                    podrška: 'HDR10+, Dolby Vision, Dolby Atmos'
+                },
+                pros: ['Brži čip', 'Bolje igre', 'Thread podrška'],
+                cons: ['Skup za streaming uređaj'],
+                bestFor: 'One koji su u Apple ekosustavu'
+            }
+        ];
+
+        // =============================================
+        // SVI SAMSUNG MODELI 2026
+        // =============================================
+        const samsungProducts = [
+            // GALAXY S SERIJA
+            {
+                id: 's26',
+                name: 'Galaxy S26',
+                category: 'Galaxy S',
+                emoji: '📱',
+                specs: {
+                    zaslon: '6.3" Dynamic AMOLED 2X, 120Hz',
+                    procesor: 'Exynos 2600 / Snapdragon 8 Gen 5',
+                    memorija: '8GB RAM + 128GB/256GB',
+                    kamera: '50MP glavna + 12MP ultraširoka',
+                    baterija: '4000 mAh',
+                    punjenje: '25W',
+                    težina: '168g'
+                },
+                pros: ['Dobar zaslon', 'Kompaktan'],
+                cons: ['Manja baterija', 'Sporije punjenje'],
+                bestFor: 'One koji žele manji flagship'
+            },
+            {
+                id: 's26plus',
+                name: 'Galaxy S26+',
+                category: 'Galaxy S',
+                emoji: '📱',
+                specs: {
+                    zaslon: '6.7" Dynamic AMOLED 2X, 120Hz',
+                    procesor: 'Exynos 2600 / Snapdragon 8 Gen 5',
+                    memorija: '12GB RAM + 256GB/512GB',
+                    kamera: '50MP + 12MP + 10MP tele (3x)',
+                    baterija: '4900 mAh',
+                    punjenje: '45W',
+                    težina: '195g'
+                },
+                pros: ['Dobar omjer cijene', 'Dobra baterija'],
+                cons: ['Nema S Pen'],
+                bestFor: 'Većinu korisnika'
+            },
+            {
+                id: 's26ultra',
+                name: 'Galaxy S26 Ultra',
+                category: 'Galaxy S',
+                emoji: '📱',
+                specs: {
+                    zaslon: '6.9" Dynamic AMOLED 2X, 120Hz',
+                    procesor: 'Snapdragon 8 Gen 5',
+                    memorija: '12GB/16GB RAM + 256GB/512GB/1TB',
+                    kamera: '200MP + 12MP + 50MP + 10MP',
+                    baterija: '5500 mAh',
+                    punjenje: '65W',
+                    sPen: 'Ugrađen',
+                    težina: '235g'
+                },
+                pros: ['S Pen', '200MP kamera', '65W punjenje', 'Velika baterija'],
+                cons: ['Vrlo težak', 'Skup'],
+                bestFor: 'Poslovne korisnike, fotografe'
+            },
+
+            // GALAXY Z SERIJA
+            {
+                id: 'zfold6',
+                name: 'Galaxy Z Fold6',
+                category: 'Galaxy Z',
+                emoji: '📱',
+                specs: {
+                    zaslon: '7.6" Dynamic AMOLED 2X 120Hz (unutra), 6.3" (vani)',
+                    procesor: 'Snapdragon 8 Gen 5',
+                    memorija: '12GB RAM + 256GB/512GB/1TB',
+                    kamera: '50MP + 12MP + 10MP',
+                    baterija: '4800 mAh',
+                    težina: '240g'
+                },
+                pros: ['Veliki zaslon', 'Multitasking', 'S Pen podrška'],
+                cons: ['Skup', 'Debeo'],
+                bestFor: 'Multitaskere, poslovne korisnike'
+            },
+            {
+                id: 'zflip6',
+                name: 'Galaxy Z Flip6',
+                category: 'Galaxy Z',
+                emoji: '📱',
+                specs: {
+                    zaslon: '6.7" Dynamic AMOLED 2X 120Hz, 3.4" Flex Window',
+                    procesor: 'Snapdragon 8 Gen 5',
+                    memorija: '8GB RAM + 256GB/512GB',
+                    kamera: '50MP + 12MP',
+                    baterija: '4000 mAh',
+                    težina: '187g'
+                },
+                pros: ['Kompaktan', 'Modan dizajn', 'Veliki vanjski ekran'],
+                cons: ['Manja baterija'],
+                bestFor: 'One koji žele moderan sklopivi telefon'
+            },
+
+            // GALAXY TAB SERIJA
+            {
+                id: 'tabs10ultra',
+                name: 'Galaxy Tab S10 Ultra',
+                category: 'Galaxy Tab',
+                emoji: '📱',
+                specs: {
+                    zaslon: '14.6" Dynamic AMOLED 2X, 120Hz',
+                    procesor: 'Snapdragon 8 Gen 5',
+                    memorija: '12GB/16GB RAM',
+                    pohrana: '256GB/512GB/1TB + microSD',
+                    kamera: '13MP + 8MP ultraširoka',
+                    baterija: '11200 mAh',
+                    sPen: 'Uključen',
+                    težina: '720g'
+                },
+                pros: ['Ogroman zaslon', 'Snažan', 'S Pen'],
+                cons: ['Težak', 'Skup'],
+                bestFor: 'Kreativce, profesionalce'
+            },
+            {
+                id: 'tabs10plus',
+                name: 'Galaxy Tab S10+',
+                category: 'Galaxy Tab',
+                emoji: '📱',
+                specs: {
+                    zaslon: '12.4" Dynamic AMOLED 2X, 120Hz',
+                    procesor: 'Snapdragon 8 Gen 5',
+                    memorija: '12GB RAM',
+                    pohrana: '256GB/512GB + microSD',
+                    baterija: '10090 mAh',
+                    težina: '580g'
+                },
+                pros: ['Dobar omjer cijene', 'S Pen'],
+                cons: ['Manji od Ultra'],
+                bestFor: 'Većinu korisnika'
+            },
+            {
+                id: 'tabs10fe',
+                name: 'Galaxy Tab S10 FE',
+                category: 'Galaxy Tab',
+                emoji: '📱',
+                specs: {
+                    zaslon: '12.4" LCD, 90Hz',
+                    procesor: 'Exynos 2400',
+                    memorija: '6GB/8GB RAM',
+                    pohrana: '128GB/256GB + microSD',
+                    baterija: '10090 mAh'
+                },
+                pros: ['Pristupačan', 'Dobar za školu'],
+                cons: ['LCD zaslon', 'Sporiji'],
+                bestFor: 'Studente, školu'
+            },
+
+            // GALAXY WATCH SERIJA
+            {
+                id: 'watch7',
+                name: 'Galaxy Watch7',
+                category: 'Galaxy Watch',
+                emoji: '⌚',
+                specs: {
+                    zaslon: '44mm/40mm, Super AMOLED',
+                    procesor: 'Exynos W1000',
+                    baterija: 'Do 40h',
+                    senzori: 'EKG, SpO2, tjelesna temperatura',
+                    os: 'Wear OS 5'
+                },
+                pros: ['Dobar', 'Precizan'],
+                cons: ['Baterija'],
+                bestFor: 'Samsung korisnike'
+            },
+            {
+                id: 'watchultra',
+                name: 'Galaxy Watch Ultra',
+                category: 'Galaxy Watch',
+                emoji: '⌚',
+                specs: {
+                    zaslon: '47mm, Titanij',
+                    procesor: 'Exynos W1000',
+                    baterija: 'Do 80h',
+                    otpornost: '100m',
+                    senzori: 'EKG, SpO2, temperatura, dubinomjer'
+                },
+                pros: ['Duga baterija', 'Izdržljiv', 'Precizan GPS'],
+                cons: ['Velik', 'Skup'],
+                bestFor: 'Sportaše, avanturiste'
+            },
+
+            // GALAXY BUDS SERIJA
+            {
+                id: 'buds3pro',
+                name: 'Galaxy Buds3 Pro',
+                category: 'Galaxy Buds',
+                emoji: '🎧',
+                specs: {
+                    tip: 'In-ear',
+                    zvuk: '24-bit Hi-Fi',
+                    poništavanje_buke: 'Aktivno',
+                    baterija: 'Do 6h, 24h s kutijom',
+                    otpornost: 'IP57',
+                    povezivanje: 'Bluetooth 5.4'
+                },
+                pros: ['Odličan zvuk', 'Dobar ANC'],
+                cons: ['Baterija'],
+                bestFor: 'Samsung korisnike'
+            },
+
+            // GALAXY BOOK SERIJA
+            {
+                id: 'book5pro',
+                name: 'Galaxy Book5 Pro',
+                category: 'Galaxy Book',
+                emoji: '💻',
+                specs: {
+                    zaslon: '16" Dynamic AMOLED 2X, 120Hz',
+                    procesor: 'Intel Core Ultra 9',
+                    memorija: '16GB/32GB RAM',
+                    pohrana: '512GB/1TB SSD',
+                    grafika: 'Intel Arc',
+                    baterija: 'Do 24h'
+                },
+                pros: ['AMOLED zaslon', 'Duge performanse', 'Tanak'],
+                cons: ['Skup'],
+                bestFor: 'Profesionalce, kreativce'
+            },
+            {
+                id: 'book5pro360',
+                name: 'Galaxy Book5 Pro 360',
+                category: 'Galaxy Book',
+                emoji: '💻',
+                specs: {
+                    zaslon: '16" Super AMOLED, 120Hz, dodir',
+                    procesor: 'Intel Core Ultra 9',
+                    memorija: '16GB/32GB',
+                    pohrana: '512GB/1TB',
+                    sPen: 'Uključen',
+                    baterija: 'Do 22h'
+                },
+                pros: ['Dodirni zaslon', 'S Pen', 'Sklopivi'],
+                cons: ['Skup'],
+                bestFor: 'Kreativce, dizajnere'
+            },
+
+            // OSTALO
+            {
+                id: 'samsungmonitor',
+                name: 'Samsung Smart Monitor M9',
+                category: 'Ostalo',
+                emoji: '🖥️',
+                specs: {
+                    zaslon: '32" 4K UHD, 60Hz',
+                    procesor: 'IoT Hub',
+                    povezivanje: 'Wi-Fi, Bluetooth',
+                    značajke: 'Smart TV, Samsung TV Plus, Workspace'
+                },
+                pros: ['Monitor i TV u jednom', 'Dobar za ured'],
+                cons: ['60Hz'],
+                bestFor: 'One koji trebaju monitor i TV'
+            },
+            {
+                id: 'samsungtv',
+                name: 'Samsung Neo QLED 8K',
+                category: 'Ostalo',
+                emoji: '📺',
+                specs: {
+                    zaslon: '65"/75"/85" 8K Mini-LED',
+                    procesor: 'Neo Quantum 8K Gen3',
+                    os: 'Tizen OS',
+                    značajke: 'AI upscaling, Dolby Atmos'
+                },
+                pros: ['Vrhunska slika', '8K', 'AI poboljšanje'],
+                cons: ['Vrlo skup'],
+                bestFor: 'Kino entuzijaste'
+            }
+        ];
+
+        // =============================================
+        // GLAVNI KOD
+        // =============================================
+
+        // Stanje aplikacije
+        let currentBrand = '';
+        let currentCategory = 'svi';
+
+        // Dohvat elemenata
+        const homePage = document.getElementById('homePage');
+        const productsPage = document.getElementById('productsPage');
+        const specsPage = document.getElementById('specsPage');
+        const productsList = document.getElementById('productsList');
+        const brandTitle = document.getElementById('brandTitle');
+        const productName = document.getElementById('productName');
+        const specsContent = document.getElementById('specsContent');
+        const currentView = document.getElementById('currentView');
+        const categoryFilter = document.getElementById('categoryFilter');
+
+        // Funkcija za prikaz početne
+        function showHome() {
+            homePage.classList.remove('hidden');
+            productsPage.classList.add('hidden');
+            specsPage.classList.add('hidden');
+            currentView.textContent = 'Početna';
+        }
+
+        // Funkcija za prikaz proizvoda
+        function showProducts(brand) {
+            currentBrand = brand;
+            currentCategory = 'svi';
+            homePage.classList.add('hidden');
+            productsPage.classList.remove('hidden');
+            specsPage.classList.add('hidden');
+
+            const brandName = brand === 'apple' ? 'Apple' : 'Samsung';
+            brandTitle.textContent = brandName + ' - svi modeli 2026';
+            currentView.textContent = brandName;
+
+            // Prikži kategorije
+            showCategoryFilter();
+
+            // Prikaži proizvode
+            filterProducts();
+        }
+
+        // Funkcija za prikaz filtera kategorija
+        function showCategoryFilter() {
+            const products = currentBrand === 'apple' ? appleProducts : samsungProducts;
+            const categories = [...new Set(products.map(p => p.category))];
+
+            let html = '<button class="category-btn active" data-category="svi">Svi</button>';
+            categories.forEach(cat => {
+                html += `<button class="category-btn" data-category="${cat}">${cat}</button>`;
+            });
+
+            categoryFilter.innerHTML = html;
+
+            // Dodaj event listenere za gumbe kategorija
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategory = this.dataset.category;
+                    filterProducts();
+                });
+            });
+        }
+
+        // Funkcija za filtriranje proizvoda
+        function filterProducts() {
+            const products = currentBrand === 'apple' ? appleProducts : samsungProducts;
+            let filtered = products;
+
+            if (currentCategory !== 'svi') {
+                filtered = products.filter(p => p.category === currentCategory);
+            }
+
+            displayProducts(filtered);
+        }
+
+        // Funkcija za prikaz proizvoda
+        function displayProducts(products) {
+            productsList.innerHTML = '';
+
+            products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.onclick = () => showSpecs(product);
+
+                let specsPreview = '';
+                if (product.specs.procesor) {
+                    specsPreview = product.specs.procesor.substring(0, 20) + '...';
+                } else if (product.specs.zaslon) {
+                    specsPreview = product.specs.zaslon.substring(0, 20) + '...';
+                } else {
+                    specsPreview = 'Klikni za detalje';
+                }
+
+                card.innerHTML = `
+                    <div class="product-emoji">${product.emoji}</div>
+                    <h4>${product.name}</h4>
+                    <div class="product-category">${product.category}</div>
+                    <div class="product-badge">${specsPreview}</div>
+                `;
+
+                productsList.appendChild(card);
+            });
+        }
+
+        // Funkcija za prikaz specifikacija
+        function showSpecs(product) {
+            homePage.classList.add('hidden');
+            productsPage.classList.add('hidden');
+            specsPage.classList.remove('hidden');
+
+            productName.textContent = product.name;
+            currentView.textContent = product.name;
+
+            // Generiraj HTML za specifikacije
+            let specsHTML = '<div class="specs-grid">';
+
+            // Kartica s tehničkim podacima
+            specsHTML += '<div class="specs-card"><h3>📱 Tehnički podaci</h3>';
+            for (const [key, value] of Object.entries(product.specs)) {
+                specsHTML += `
+                    <div class="spec-item">
+                        <span class="spec-label">${key}:</span>
+                        <span class="spec-value">${value}</span>
+                    </div>
+                `;
+            }
+            specsHTML += '</div>';
+
+            // Kartica s prednostima i manama
+            specsHTML += '<div class="specs-card"><h3>⚖️ Za i protiv</h3><div class="pros-cons">';
+
+            specsHTML += '<div class="pros-box"><h4>✅ Prednosti</h4><ul>';
+            product.pros.forEach(p => specsHTML += `<li>✓ ${p}</li>`);
+            specsHTML += '</ul></div>';
+
+            specsHTML += '<div class="cons-box"><h4>❌ Nedostaci</h4><ul>';
+            product.cons.forEach(c => specsHTML += `<li>✗ ${c}</li>`);
+            specsHTML += '</ul></div>';
+
+            specsHTML += '</div></div>';
+
+            // Kartica s preporukom
+            specsHTML += `<div class="specs-card"><h3>🎯 Za koga je?</h3><div class="best-for">${product.bestFor}</div></div>`;
+
+            specsHTML += '</div>';
+            specsContent.innerHTML = specsHTML;
+        }
+
+        // Funkcija za povratak na proizvode
+        function backToProducts() {
+            if (currentBrand) {
+                showProducts(currentBrand);
+            } else {
+                showHome();
+            }
+        }
+
+        // Event listeneri
+        document.getElementById('homeBtn').addEventListener('click', showHome);
+        document.getElementById('appleBrandBtn').addEventListener('click', () => showProducts('apple'));
+        document.getElementById('samsungBrandBtn').addEventListener('click', () => showProducts('samsung'));
+        document.getElementById('backToProductsBtn').addEventListener('click', backToProducts);
+
+        // Dark/Light mode
+        const body = document.body;
+        const lightModeBtn = document.getElementById('lightModeBtn');
+        const darkModeBtn = document.getElementById('darkModeBtn');
+
+        lightModeBtn.addEventListener('click', () => {
+            body.classList.remove('dark-mode');
+            body.classList.add('light-mode');
+            lightModeBtn.classList.add('active');
+            darkModeBtn.classList.remove('active');
+        });
+
+        darkModeBtn.addEventListener('click', () => {
+            body.classList.remove('light-mode');
+            body.classList.add('dark-mode');
+            darkModeBtn.classList.add('active');
+            lightModeBtn.classList.remove('active');
+        });
+
+        // Inicijalni prikaz
+        showHome();
+    </script>
+</body>
+</html>
